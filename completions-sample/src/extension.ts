@@ -6,7 +6,9 @@ import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	let provider1 = vscode.languages.registerCompletionItemProvider('plaintext', {
+	let tasksJson:vscode.DocumentSelector = { scheme: 'file', language: 'jsonc', pattern: '**/tasks.json' };
+
+	let provider1 = vscode.languages.registerCompletionItemProvider(tasksJson, {
 
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
 
@@ -47,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	const provider2 = vscode.languages.registerCompletionItemProvider(
-		'plaintext',
+		tasksJson,
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
